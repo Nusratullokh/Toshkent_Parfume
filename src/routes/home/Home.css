@@ -1,0 +1,12 @@
+li{
+    color: gray;
+}
+li:hover{
+    color: red;
+}
+
+
+.tadd{
+    color: rgba(128, 128, 128, 0.304);
+    
+}
