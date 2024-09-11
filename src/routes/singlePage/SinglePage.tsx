@@ -1,4 +1,4 @@
-import { BsFillCartPlusFill } from "react-icons/bs"; 
+import { BsFillCartPlusFill } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -6,7 +6,7 @@ import { toggleLike as toggleLike2 } from "../../redux/slices/liked-slice";
 import { addToCart } from "../../redux/slices/cart-slice";
 import "aos/dist/aos.css";
 
-const Dynamic: React.FC = () => {
+const SinglePage: React.FC = () => {
     const product = JSON.parse(localStorage.getItem("product") || "{}");
     const [likedProducts, setLikedProducts] = useState<any[]>([]);
     const [cartProducts, setCartProducts] = useState<any[]>([]);
@@ -58,14 +58,13 @@ const Dynamic: React.FC = () => {
     };
     const cleanAndShortenDescription = (description: string, maxLength: number) => {
         if (!description) return "";
-        
-        // Remove HTML tags using regex
+
         const cleanedDescription = description.replace(/<\/?[^>]+(>|$)/g, "");
 
         return cleanedDescription.length > maxLength
-        ? cleanedDescription.substring(0, maxLength) + "..."
-        : cleanedDescription;
-};
+            ? cleanedDescription.substring(0, maxLength) + "..."
+            : cleanedDescription;
+    };
 
     return (
         <div className="flex  max-w-6xl mx-auto p-5 gap-10">
@@ -75,15 +74,15 @@ const Dynamic: React.FC = () => {
                     alt=""
                     className="w-96 rounded-lg"
                 />
-            </div> 
+            </div>
             <div
                 className="w-1/2 flex flex-col justify-center"
                 data-aos="fade-left"
             >
-            <p className=" text-orange-400 text-xl flex mb-6 justify-end">★★★<b className="text-gray-300">★★</b> {product.rating} <b className="text-black ml-2">3</b></p>
+                <p className=" text-orange-400 text-xl flex mb-6 justify-end">★★★<b className="text-gray-300">★★</b> {product.rating} <b className="text-black ml-2">3</b></p>
                 <h1 className="text-4xl mb-5 font-serif font-bold">{product.name}</h1>
                 <p className="text-xl mb-3"><b className="font-bold">Brand:</b> {product.brand}</p>
-                
+
                 {/* <p className="text-lg leading-relaxed">{product.description}</p> */}
                 <p>{cleanAndShortenDescription(product.description, 100)}</p> {/* Description cleaned and shortened */}
 
@@ -92,12 +91,11 @@ const Dynamic: React.FC = () => {
                 </p>
 
                 <div className="flex gap-4 mt-5">
-                <button
-                        className={`px-4 py-2 text-white rounded-lg transition-transform transform active:scale-95 ${
-                            isAddedToCart(product)
+                    <button
+                        className={`px-4 py-2 text-white rounded-lg transition-transform transform active:scale-95 ${isAddedToCart(product)
                                 ? "bg-gray-400 "
                                 : "bg-red-500"
-                        }`}
+                            }`}
                         onClick={() => {
                             if (!isAddedToCart(product)) {
                                 handleAddToCart(product);
@@ -106,28 +104,28 @@ const Dynamic: React.FC = () => {
                     >
                         {isAddedToCart(product)
                             ? <div className="flex items-center  "> <b className="text-center">Savatga qo'shilgan</b></div>
-                            :  <div className="flex gap-4 items-center "><BsFillCartPlusFill  className="text-[25px]"/><b >Savatga qo'shish</b></div>}
+                            : <div className="flex gap-4 items-center "><BsFillCartPlusFill className="text-[25px]" /><b >Savatga qo'shish</b></div>}
                     </button>
                     <div className="flex w-[50px] h-[50px] items-center justify-center rounded-xl bg-gray-100">
-                    <button className="text-red-500  ">
-                        {isLiked(product) ? (
-                            <AiFillHeart
-                                style={{ fontSize: "30px", cursor: "pointer" }}
-                                onClick={() => toggleLike(product)}
-                            />
-                        ) : (
-                            <AiOutlineHeart
-                                style={{ fontSize: "30px", cursor: "pointer" }}
-                                onClick={() => toggleLike(product)}
-                            />
-                        )}
-                    </button>
+                        <button className="text-red-500  ">
+                            {isLiked(product) ? (
+                                <AiFillHeart
+                                    style={{ fontSize: "30px", cursor: "pointer" }}
+                                    onClick={() => toggleLike(product)}
+                                />
+                            ) : (
+                                <AiOutlineHeart
+                                    style={{ fontSize: "30px", cursor: "pointer" }}
+                                    onClick={() => toggleLike(product)}
+                                />
+                            )}
+                        </button>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     );
 };
 
-export default Dynamic;
+export default SinglePage;

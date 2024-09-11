@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../redux/slices/products-slice";
 import { RootState } from "../../redux/store/index";
 import { useRoutes, RouteObject, NavLink, useLocation } from "react-router-dom";
-import Nmadur from "../home/routes/nmadur";
-import Bb_cc from "../home/routes/bb_cc";
-import Concealer from "../home/routes/concealer";
-import Contour from "../home/routes/contour";
-import Cream from "../home/routes/cream";
-import Gel from "../home/routes/gel";
-import Highlighter from "../home/routes/highlighter";
-import Lip_gloss from "../home/routes/lip_gloss";
-import Lip_stain from "../home/routes/lip_stain";
-import Lipstick from "../home/routes/lipstick";
-import Liquid from "../home/routes/liquid";
-import Mineral from "../home/routes/mineral";
-import Null from "../home/routes/null";
-import Pelette from "../home/routes/palette";
-import Pencil from "../home/routes/pencil";
-import Powder from "../home/routes/powder";
+import Nmadur from "../cotegories/Tovarlar";
+import Bb_cc from "../cotegories/bb_cc";
+import Concealer from "../cotegories/concealer";
+import Contour from "../cotegories/contour";
+import Cream from "../cotegories/cream";
+import Gel from "../cotegories/gel";
+import Highlighter from "../cotegories/highlighter";
+import Lip_gloss from "../cotegories/lip_gloss";
+import Lip_stain from "../cotegories/lip_stain";
+import Lipstick from "../cotegories/lipstick";
+import Liquid from "../cotegories/liquid";
+import Mineral from "../cotegories/mineral";
+import Null from "../cotegories/null";
+import Pelette from "../cotegories/palette";
+import Pencil from "../cotegories/pencil";
+import Powder from "../cotegories/powder";
 import MakeupImg from "../../images/beauty.webp";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
         },
         {
             path: "/mineral",
-            element: 
+            element:
                 <Mineral products={categorizedProducts["mineral"] || []} />
             ,
         },
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
         <div>
             <ul className="max-w-[1400px] mx-auto h-[80px] flex justify-between items-center font-sans font-medium text-lg mb-[50px] ">
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -157,7 +157,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/bb_cc"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -169,7 +169,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/concealer"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -193,7 +193,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/cream"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -205,7 +205,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/gel"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -217,7 +217,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/highlighter"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -229,7 +229,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/lip_gloss"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -241,7 +241,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/lip_stain"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -253,7 +253,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/lipstick"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -265,7 +265,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/liquid"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/mineral"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -289,7 +289,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/null"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -301,7 +301,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/palette"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -313,7 +313,7 @@ const Home: React.FC = () => {
                 <span className="tadd">|</span>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/pencil"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""
@@ -324,7 +324,7 @@ const Home: React.FC = () => {
                 </li>
                 <span className="tadd">|</span>
                 <li>
-                    <NavLink 
+                    <NavLink
                         to="/powder"
                         className={({ isActive }) =>
                             isActive ? "border-b-2 border-gray-500" : ""

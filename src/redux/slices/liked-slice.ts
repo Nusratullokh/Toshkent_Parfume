@@ -23,7 +23,6 @@ const likedSlice = createSlice({
             } else {
                 state.likedProducts.push(action.payload);
             }
-            // localStorage'ga saqlash
             localStorage.setItem(
                 "likedCars",
                 JSON.stringify(state.likedProducts)

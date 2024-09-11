@@ -1,18 +1,20 @@
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import React, { useState, useEffect } from "react";
-import { Product } from "../../../types/dataTypes";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import React from "react";
+import { Product } from "../../types/dataTypes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLike as toggleLike2 } from "../../../redux/slices/liked-slice";
-import { addToCart } from "../../../redux/slices/cart-slice";
+import { toggleLike as toggleLike2 } from "../../redux/slices/liked-slice";
+import { useState, useEffect } from "react";
+import { addToCart } from "../../redux/slices/cart-slice";
+import { setCurrency } from "../../redux/slices/currency-slice";
 import "aos/dist/aos.css";
 
-interface Bb_ccProps {
+interface NullProps {
     products: Product[];
 }
 
-const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
+const Null: React.FC<NullProps> = ({ products }) => {
     const [likedProducts, setLikedProducts] = useState<Product[]>([]);
     const [cartProducts, setCartProducts] = useState<Product[]>([]);
     const navigate = useNavigate();
@@ -27,7 +29,7 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
         }
         const savedCurrency = localStorage.getItem("currency");
         if (savedCurrency) {
-            dispatch({ type: "currency/setCurrency", payload: savedCurrency });
+            dispatch(setCurrency(savedCurrency));
         }
     }, [dispatch]);
 
@@ -56,12 +58,6 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
             JSON.stringify(updatedLikedProducts)
         );
     };
-    const shortenDescription = (description: string, maxLength: number) => {
-        if (!description) return "";
-        return description.length > maxLength
-            ? description.substring(0, maxLength) + "..."
-            : description;
-    };
 
     const isAddedToCart = (product: Product) =>
         cartProducts.some((cartProduct) => cartProduct.id === product.id);
@@ -78,7 +74,7 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
 
     const convertPrice = (price: number, currency: string) => {
         if (currency === "UZS") {
-            return (price * 12700).toFixed(2);
+            return (price * 12646).toFixed(2);
         }
         return price.toFixed(2);
     };
@@ -89,19 +85,18 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
                 <div className="relative group" key={product.id}>
                     <div
                         className="w-[300px] min-h-[500px] bg-white rounded-[10px] mb-[20px] flex flex-col items-center shadow-md p-[20px]"
-                    data-aos="fade-up"
+                        data-aos="fade-up"
                         data-aos-anchor-placement="top-bottom"
                     >
-                        <div className="flex items-center justify-center w-[250px] h-[310px]">
+                        <div className="flex items-center justify-center w-[250px] h-[270px]">
                             <img
                                 src={product.api_featured_image}
                                 alt=""
-                                 className="w-60 h-[270px] object-cover mt-5  "
+                                className="w-60 h-[240px] object-cover mt-5  "
                             />
                         </div>
                         <div className="w-full h-[120px] flex flex-col gap-1">
-                            <h3 className="font-bold">{shortenDescription(product.name, 15)}</h3>
-                            
+                            <h3>{product.name}</h3>
                             <p>{product.brand}</p>
                             <p>
                                 {convertPrice(
@@ -159,11 +154,10 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
                                 )}
                             </button>
                             <button
-                                className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${
-                                    isAddedToCart(product)
-                                        ?"bg-gray-500" 
+                                className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${isAddedToCart(product)
+                                        ? "bg-gray-500"
                                         : "bg-red-500"
-                                }`}
+                                    }`}
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     if (!isAddedToCart(product)) {
@@ -173,7 +167,7 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
                             >
                                 {isAddedToCart(product)
                                     ? <div className="flex items-center ml-12 "> <b className="text-center">Savatga qo'shilgan</b></div>
-                                    : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]"/><b >Savatga qo'shish</b></div>}
+                                    : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]" /><b >Savatga qo'shish</b></div>}
                             </button>
                         </div>
                     </div>
@@ -183,4 +177,4 @@ const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
     );
 };
 
-export default Bb_cc;
+export default Null;

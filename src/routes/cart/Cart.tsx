@@ -1,10 +1,8 @@
-import { CgCloseO } from "react-icons/cg"; 
+import { CgCloseO } from "react-icons/cg";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/slices/cart-slice";
 import { Product } from "../../types/dataTypes";
-// import { AiOutlineClose } from "react-icons/ai";
-
 const Cart: React.FC = () => {
     const [cartProducts, setCartProducts] = React.useState<Product[]>([]);
 
@@ -35,9 +33,9 @@ const Cart: React.FC = () => {
 
     return (
         <div className="container mx-auto py-10 px-4"
-        data-aos="fade-down"
-        data-aos-easing="linear"
-        data-aos-duration="1500">
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500">
             {cartProducts.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
                     {cartProducts?.map((item: Product) => (
@@ -48,9 +46,9 @@ const Cart: React.FC = () => {
                             <button
                                 className="absolute top-2 right-2 text-red-500 mb-4 "
                                 onClick={() => handleRemoveFromCart(item.id)}
-                                
+
                             >
-                                <CgCloseO  size={20} />
+                                <CgCloseO size={20} />
                             </button>
                             <img
                                 src={item.api_featured_image}
@@ -61,7 +59,7 @@ const Cart: React.FC = () => {
                                 {item.name}
                             </h2>
                             <p className="text-gray-500 mb-2  ">{item.brand}</p>
-                        <p className="product-rating text-orange-500">★★★★★ {item.rating} <b className="text-black">5</b></p>
+                            <p className="product-rating text-orange-500">★★★★★ {item.rating} <b className="text-black">5</b></p>
 
                             <p className="text-lg font-bold mb-4 ">
                                 {item.price}   {item.price_sign}

@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import Home from "./home/Home";
-import Dynamic from "./dynamic/Dynamic";
-import Liked from "./liked/Liked";
+import Dynamic from "./singlePage/SinglePage";
+import Liked from "./like/Like";
 import Cart from "./cart/Cart";
 
 const RouteController = () => {

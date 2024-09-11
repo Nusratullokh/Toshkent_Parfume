@@ -1,20 +1,20 @@
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import React from "react";
-import { Product } from "../../../types/dataTypes";
+import { Product } from "../../types/dataTypes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLike as toggleLike2 } from "../../../redux/slices/liked-slice";
-import { useState, useEffect } from "react";
-import { addToCart } from "../../../redux/slices/cart-slice";
-import { setCurrency } from "../../../redux/slices/currency-slice";
+import { toggleLike as toggleLike2 } from "../../redux/slices/liked-slice";
+import { useState, useEffect } from "react"
+import { addToCart } from "../../redux/slices/cart-slice";
+import { setCurrency } from "../../redux/slices/currency-slice";
 import "aos/dist/aos.css";
 
-interface NmadurProps {
+interface TovarlarProps {
     products: Product[];
 }
 
-const Nmadur: React.FC<NmadurProps> = ({ products }) => {
+const Tovarlar: React.FC<TovarlarProps> = ({ products }) => {
     const [likedProducts, setLikedProducts] = useState<Product[]>([]);
     const [cartProducts, setCartProducts] = useState<Product[]>([]);
     const navigate = useNavigate();
@@ -162,11 +162,10 @@ const Nmadur: React.FC<NmadurProps> = ({ products }) => {
                                     )}
                                 </button>
                                 <button
-                                    className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${
-                                        isAddedToCart(product)
-                                            ?"bg-gray-500" 
-                                    : "bg-red-500"
-                                    }`}
+                                    className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${isAddedToCart(product)
+                                            ? "bg-gray-500"
+                                            : "bg-red-500"
+                                        }`}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         if (!isAddedToCart(product)) {
@@ -175,8 +174,8 @@ const Nmadur: React.FC<NmadurProps> = ({ products }) => {
                                     }}
                                 >
                                     {isAddedToCart(product)
-                                         ? <div className="flex items-center ml-12 "> <b className="text-center">Savatga qo'shilgan</b></div>
-                                         : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]"/><b >Savatga qo'shish</b></div>}
+                                        ? <div className="flex items-center ml-12 "> <b className="text-center">Savatga qo'shilgan</b></div>
+                                        : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]" /><b >Savatga qo'shish</b></div>}
                                 </button>
                             </div>
                         </div>
@@ -187,4 +186,4 @@ const Nmadur: React.FC<NmadurProps> = ({ products }) => {
     );
 };
 
-export default Nmadur;
+export default Tovarlar;

@@ -1,20 +1,18 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import React from "react";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { Product } from "../../../types/dataTypes";
+import React, { useState, useEffect } from "react";
+import { Product } from "../../types/dataTypes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLike as toggleLike2 } from "../../../redux/slices/liked-slice";
-import { useState, useEffect } from "react";
-import { addToCart } from "../../../redux/slices/cart-slice";
-import { setCurrency } from "../../../redux/slices/currency-slice";
+import { toggleLike as toggleLike2 } from "../../redux/slices/liked-slice";
+import { addToCart } from "../../redux/slices/cart-slice";
 import "aos/dist/aos.css";
 
-interface NConcealerProps {
+interface Bb_ccProps {
     products: Product[];
 }
 
-const Concealer: React.FC<NConcealerProps> = ({ products }) => {
+const Bb_cc: React.FC<Bb_ccProps> = ({ products }) => {
     const [likedProducts, setLikedProducts] = useState<Product[]>([]);
     const [cartProducts, setCartProducts] = useState<Product[]>([]);
     const navigate = useNavigate();
@@ -29,9 +27,7 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
         }
         const savedCurrency = localStorage.getItem("currency");
         if (savedCurrency) {
-            if (savedCurrency) {
-                dispatch(setCurrency(savedCurrency));
-            }
+            dispatch({ type: "currency/setCurrency", payload: savedCurrency });
         }
     }, [dispatch]);
 
@@ -60,6 +56,12 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
             JSON.stringify(updatedLikedProducts)
         );
     };
+    const shortenDescription = (description: string, maxLength: number) => {
+        if (!description) return "";
+        return description.length > maxLength
+            ? description.substring(0, maxLength) + "..."
+            : description;
+    };
 
     const isAddedToCart = (product: Product) =>
         cartProducts.some((cartProduct) => cartProduct.id === product.id);
@@ -76,10 +78,11 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
 
     const convertPrice = (price: number, currency: string) => {
         if (currency === "UZS") {
-            return (price * 12646).toFixed(2);
+            return (price * 12700).toFixed(2);
         }
         return price.toFixed(2);
     };
+
     return (
         <div className="flex flex-wrap gap-10 mt-[50px]">
             {products?.map((product) => (
@@ -89,7 +92,7 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
                         data-aos="fade-up"
                         data-aos-anchor-placement="top-bottom"
                     >
-                        <div className="flex items-center justify-center w-[250px] h-[300px]">
+                        <div className="flex items-center justify-center w-[250px] h-[310px]">
                             <img
                                 src={product.api_featured_image}
                                 alt=""
@@ -97,7 +100,8 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
                             />
                         </div>
                         <div className="w-full h-[120px] flex flex-col gap-1">
-                            <h3>{product.name}</h3>
+                            <h3 className="font-bold">{shortenDescription(product.name, 15)}</h3>
+
                             <p>{product.brand}</p>
                             <p>
                                 {convertPrice(
@@ -155,11 +159,10 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
                                 )}
                             </button>
                             <button
-                                className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${
-                                    isAddedToCart(product)
-                                         ?"bg-gray-500" 
+                                className={`mb-3 flex   items-center w-[260px] h-10 text-white p-3 rounded-[10px] transition-transform transform active:scale-[.97] ${isAddedToCart(product)
+                                        ? "bg-gray-500"
                                         : "bg-red-500"
-                                }`}
+                                    }`}
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     if (!isAddedToCart(product)) {
@@ -168,8 +171,8 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
                                 }}
                             >
                                 {isAddedToCart(product)
-                                   ? <div className="flex items-center ml-12 "> <b className="text-center">Savatga qo'shilgan</b></div>
-                                   : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]"/><b >Savatga qo'shish</b></div>}
+                                    ? <div className="flex items-center ml-12 "> <b className="text-center">Savatga qo'shilgan</b></div>
+                                    : <div className="flex gap-6 items-center"><BsFillCartPlusFill className="text-[25px]" /><b >Savatga qo'shish</b></div>}
                             </button>
                         </div>
                     </div>
@@ -179,4 +182,4 @@ const Concealer: React.FC<NConcealerProps> = ({ products }) => {
     );
 };
 
-export default Concealer;
+export default Bb_cc;

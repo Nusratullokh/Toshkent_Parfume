@@ -15,19 +15,7 @@ function App() {
         }
     }, [status, dispatch]);
 
-    // if (status === "loading") {
-    //     return (
-    //         <div id="load">
-    //             <div>G</div>
-    //             <div>N</div>
-    //             <div>I</div>
-    //             <div>D</div>
-    //             <div>A</div>
-    //             <div>O</div>
-    //             <div>L</div>
-    //         </div>
-    //     );
-    // }
+   
 
     if (status === "failed") {
         return <div>Failed to load products.</div>;
@@ -35,7 +23,6 @@ function App() {
 
     return (
         <>
-            {/* <div className="w-full h-[30px] bg-black"></div> */}
             <Header />
             <RouteController />
             <Footer />
